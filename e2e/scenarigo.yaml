@@ -1,0 +1,9 @@
+schemaVersion: config/v1
+
+scenarios: ["./scenarios"]
+
+output:
+  verbose: false
+  report:
+    json:
+      filename: ./report.json
