@@ -1,0 +1,13 @@
+title: health check
+vars:
+  endpoint: http://localhost:8080
+steps:
+  - title: GET api/v1/health/alive
+    protocol: http
+    request:
+      method: GET
+      url: "{{vars.endpoint}}/api/v1/health/alive"
+    expect:
+      code: OK
+      body:
+        message: "ok"

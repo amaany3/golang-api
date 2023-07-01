@@ -19,3 +19,9 @@
 
 # Go workspace file
 go.work
+
+# devbox
+.devbox
+
+# scenarigo
+e2e/report.json

@@ -1,0 +1,24 @@
+name: "API E2E Test"
+
+on:
+  pull_request:
+
+jobs:
+  e2e-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: docker compose up
+        run: docker-compose -f e2e/docker-compose.yml up -d
+
+      - name: download scenarigo
+        run: |
+          export version='v0.14.2'
+          export go_version='go1.20.1'
+          curl -sLJ https://github.com/zoncoen/scenarigo/releases/download/${version}/scenarigo_${version}_${go_version}_$(uname)_$(uname -m).tar.gz -o scenarigo.tar.gz
+          mkdir ./scenarigo && tar -zxvf ./scenarigo.tar.gz -C ./scenarigo && rm scenarigo.tar.gz
+
+      - name: run test
+        run: ./scenarigo/scenarigo -c e2e/scenarigo.yaml run
