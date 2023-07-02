@@ -1,0 +1,37 @@
+openapi: 3.1.0
+x-stoplight:
+  id: juphso2grdpsb
+info:
+  title: golang api
+  version: '1.0'
+servers:
+  - url: 'http://localhost:8080'
+paths:
+  /api/v1/health/alive:
+    get:
+      summary: Health Alive
+      responses:
+        '200':
+          $ref: '#/components/responses/api_v1_health_alive_200'
+      operationId: get-api-v1-health-alive
+    parameters: []
+components:
+  schemas: {}
+  securitySchemes: {}
+  responses:
+    api_v1_health_alive_200:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            minProperties: 1
+            maxProperties: 1
+            properties:
+              message:
+                type: string
+          examples:
+            '200':
+              value:
+                message: ok
+x-internal: false
